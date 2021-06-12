@@ -3,6 +3,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from starlette.responses import RedirectResponse
 
 from model import RFR_Model
 from model_types import YieldResponse, PredictionRequest
@@ -20,6 +21,11 @@ app.mount("/web", StaticFiles(directory="static"), name="static")
 
 RanFor = RFR_Model()
 RanFor.load_data()
+
+
+@app.get("/")
+def server_static():
+    return RedirectResponse(url='/web/index.html', status_code=302)
 
 
 @app.post('/get_yield', response_model=YieldResponse)
