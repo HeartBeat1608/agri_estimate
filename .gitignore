@@ -1,0 +1,7 @@
+Lib
+Include
+Scripts
+.vscode/**
+__pycache__
+pyvenv.cfg
+.pylintrc
